@@ -1,0 +1,14 @@
+# Ball.py - Person B's approach
+
+try:
+    # Taking inputs from the console
+    v0 = float(input("Enter the initial velocity of the ball (ft/sec): "))
+    g = 32.8  # ft/sec^2, force of gravity
+
+    # Computing the maximum height using the formula H = (v0^2) / (2 * g)
+    max_height = (v0 ** 2) / (2 * g)
+
+    # Displaying the result
+    print(f"The maximum height the ball reaches is {max_height:.2f} feet.")
+except ValueError:
+    print("Invalid input. Please enter a valid numerical value for the initial velocity.")
