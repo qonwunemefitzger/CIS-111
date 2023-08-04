@@ -1,0 +1,46 @@
+import math
+
+def compute_monthly_repayment(PV, r, n):
+    # Convert APR to monthly interest rate
+    r_monthly = r / (12 * 100)
+
+    # Calculate the monthly repayment amount using the formula
+    Pmt = r_monthly * PV / (1 - (1 + r_monthly) ** -n)
+
+    return Pmt
+
+def compute_loan_amount(Pmt, r, n):
+    # Convert APR to monthly interest rate
+    r_monthly = r / (12 * 100)
+
+    # Calculate the loan amount you can afford to borrow using the formula
+    PV = (1 - (1 + r_monthly) ** -n) * Pmt / r_monthly
+
+    return PV
+
+def compute_loan_duration(PV, r, Pmt):
+    # Convert APR to monthly interest rate
+    r_monthly = r / (12 * 100)
+
+    # Calculate the number of months it takes to pay off the loan using the formula
+    n = math.log(1 - PV * r_monthly / Pmt) / math.log(1 + r_monthly)
+
+    return n
+
+# Given inputs
+PV = 12000
+r = 7.45
+n = 48
+
+# Calculate the monthly repayment amount for a given loan amount
+monthly_repayment = compute_monthly_repayment(PV, r, n)
+print("Monthly repayment amount for ${}: {:.2f}".format(PV, monthly_repayment))
+
+# Calculate the loan amount you can afford to borrow for a given monthly repayment amount
+Pmt = 1000
+PV_affordable = compute_loan_amount(Pmt, r, n)
+print("Loan amount you can afford with monthly repayment of ${}: {:.2f}".format(Pmt, PV_affordable))
+
+# Calculate the number of months to pay off the loan when borrowing PV dollars with a given monthly repayment
+loan_duration = compute_loan_duration(PV, r, Pmt)
+print("Number of months to pay off the loan: {:.2f}".format(loan_duration))
