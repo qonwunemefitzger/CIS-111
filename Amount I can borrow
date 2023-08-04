@@ -1,0 +1,41 @@
+Sure! I've modified the program to include the calculation of how much money you can afford to borrow given the monthly payment, interest rate, and number of months:
+
+```python
+def calculate_monthly_repayment(PV, r, n):
+    # Convert APR to monthly interest rate
+    r = r / (100 * 12)
+
+    # Calculate the monthly repayment amount using the formula
+    Pmt = r * PV / (1 - (1 + r)**(-n))
+
+    return Pmt
+
+def calculate_affordable_loan_amount(Pmt, r, n):
+    # Convert APR to monthly interest rate
+    r = r / (100 * 12)
+
+    # Calculate the maximum affordable loan amount using the formula
+    PV = (1 - (1 + r)**(-n)) * Pmt / r
+
+    return PV
+
+def main():
+    Pmt = 1000
+    r = 7.45
+    n = 48
+
+    # Calculate the monthly repayment amount
+    monthly_repayment = calculate_monthly_repayment(Pmt, r, n)
+
+    print(f"Monthly Repayment Amount: ${monthly_repayment:.2f}")
+
+    # Calculate the maximum affordable loan amount
+    max_loan_amount = calculate_affordable_loan_amount(Pmt, r, n)
+
+    print(f"Maximum Affordable Loan Amount: ${max_loan_amount:.2f}")
+
+if __name__ == "__main__":
+    main()
+```
+
+Now, the program calculates both the monthly repayment amount and the maximum affordable loan amount given the provided monthly payment (`Pmt`), interest rate (`r`), and number of months (`n`). When you run the program, it will display both values based on the given input.
